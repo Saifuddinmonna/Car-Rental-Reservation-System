@@ -11,7 +11,7 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "ES2023",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
@@ -25,9 +25,9 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "NodeNext",                                /* Specify what module code is generated. */
+    "module": "ESNext",                                /* Specify what module code is generated. */
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
-    "moduleResolution": "NodeNext",                     /* Specify how TypeScript looks up a file from a given module specifier. */
+    "moduleResolution": "Node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
@@ -105,8 +105,39 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true   , 
+    "outDir": "./dist",                       // Redirect output structure to the 'dist' directory
+        "sourceMap": true,                        // Generates corresponding '.map' file
+        "declaration": true,                       // Generates corresponding '.d.ts' file                             /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules",
+  "**/*.spec.ts"  ]
 }
+// {
+//   "compilerOptions": {
+//     "target": "es2023",                       // Specify the ECMAScript target version (ESNext)
+//     "module": "NodeNext",                       // Specify the module code generation (ESNext)
+//     "moduleResolution": "NodeNext",                // Use Node.js module resolution strategy
+//     // "esModuleInterop": true,                   // Enables emit interoperability between CommonJS and ES Modules
+//     // "skipLibCheck": true,                     // Skip type checking of declaration files
+//     // "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file
+//     // "strict": true,                           // Enable all strict type checking options
+//     // "noImplicitAny": true,                    // Raise error on expressions and declarations with an implied 'any' type
+//     "baseUrl": "./",                          // Base directory to resolve non-relative module names
+//     "paths": {                                 // Mapping for module resolution
+//       "*": ["node_modules/*"]
+//     },
+//     "outDir": "./dist",                       // Redirect output structure to the 'dist' directory
+//     "sourceMap": true,                        // Generates corresponding '.map' file
+//     "declaration": true,                       // Generates corresponding '.d.ts' file
+//                        // Specify JSX code generation (for React, if used)
+//   },
+//   "include": [
+//     "src/**/*"                                 // Include all TypeScript files in the 'src' directory
+//   ],
+//   "exclude": [
+//     "node_modules",                            // Exclude node_modules from compilation
+//     "**/*.spec.ts"                             // Exclude test files (if using Jest or similar)
+//   ]
+// }
