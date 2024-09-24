@@ -1,18 +1,39 @@
 import bcrypt from 'bcryptjs';
-import User from '../models/user';
+import User, { IUser } from '../models/user';
 import { generateToken } from '../utils/jwt';
 
-export const registerUser = async (data: any) => {
-  const hashedPassword = await bcrypt.hash(data.password, 10);
-  const user = await User.create({ ...data, password: hashedPassword });
-  return user;
-};
+// JwtPayload interface
+interface JwtPayload {
+  userId: string;
+  role: 'user' | 'admin';
+}
 
-export const loginUser = async (email: string, password: string) => {
-  const user = await User.findOne({ email });
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    throw new Error('Invalid credentials');
+class AuthService {
+  // Register User
+  public static async registerUser(data: IUser) {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const user = await User.create({ ...data, password: hashedPassword });
+    return user;
   }
-  const token = generateToken(user);
-  return { user, token };
-};
+
+  // Login User
+  public static async loginUser(email: string, password: string) {
+    const user = await User.findOne({ email });
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      throw new Error('Invalid credentials');
+    }
+
+    // Extracting the required fields for JWT
+    const payload: JwtPayload = {
+      userId: user._id.toString(),  // Extracting userId from the Mongoose document
+      role: user.role,              // Extracting role from the user document
+    };
+
+    const token = generateToken(payload);  // Passing the payload to the generateToken function
+    return { user, token };
+  }
+}
+
+export const { loginUser, registerUser } = AuthService;
+
