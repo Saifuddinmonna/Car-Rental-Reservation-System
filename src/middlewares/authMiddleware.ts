@@ -6,7 +6,8 @@ interface AuthRequest extends Request {
   user?: IUser;
 }
 
-export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
+// Rename `authMiddleware` to `isAuthenticated`
+export const isAuthenticated = (req: AuthRequest, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) return res.status(401).send({ message: 'Access denied. No token provided.' });
 
@@ -16,10 +17,12 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     next();
   } catch (err) {
     res.status(400).send({ message: 'Invalid token.' });
+    console.log(err);
   }
 };
 
-export const adminMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
+// Rename `adminMiddleware` to `isAdmin`
+export const isAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (req.user?.role !== 'admin') {
     return res.status(403).send({ message: 'Access denied. Admins only.' });
   }
