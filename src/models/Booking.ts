@@ -6,6 +6,7 @@ export interface IBooking {
   startTime: Date;
   endTime: Date;
   cost: number;
+  status: 'Pending' | 'Completed'; // Add the 'status' field
 }
 
 const bookingSchema = new Schema<IBooking>({
