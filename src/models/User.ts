@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 
 export interface IUser {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _id: any;
   name: string;
   email: string;
   password: string;
