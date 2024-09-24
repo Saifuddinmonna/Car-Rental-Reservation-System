@@ -1,7 +1,7 @@
 import Booking from '../models/booking';
 import mongoose from 'mongoose';
 
-export const createBooking = async (data: any) => {
+export const createBooking = async (data: unknown) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {

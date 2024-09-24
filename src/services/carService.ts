@@ -1,6 +1,6 @@
-import Car from '../models/car';
+import Car,{ICar} from '../models/car';
 
-export const createCar = async (data: any) => {
+export const createCar = async (data: ICar) => {
   return await Car.create(data);
 };
 
@@ -8,7 +8,7 @@ export const getCars = async () => {
   return await Car.find();
 };
 
-export const updateCar = async (id: string, data: any) => {
+export const updateCar = async (id: string, data: ICar) => {
   return await Car.findByIdAndUpdate(id, data, { new: true });
 };
 
