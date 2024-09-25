@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService';
+import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService.js';
 
 // Create a booking (User)
 export const createBookingController = async (req: Request, res: Response) => {

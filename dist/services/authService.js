@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
-import User from '../models/user';
-import { generateToken } from '../utils/jwt';
+import User from '../models/user.js';
+import { generateToken } from '../utils/jwt.js';
 class AuthService {
     // Register User
     static async registerUser(data) {

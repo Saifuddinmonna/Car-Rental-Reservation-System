@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createCar, getCars, getCarById, updateCar, deleteCar } from '../services/carService';
+import { createCar, getCars, getCarById, updateCar, deleteCar } from '../services/carService.js';
 
 // Create a new car (Admin)
 export const createCarController = async (req: Request, res: Response) => {

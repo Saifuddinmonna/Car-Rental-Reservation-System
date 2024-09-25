@@ -1,4 +1,4 @@
-import Car, { ICar } from '../models/car';
+import Car, { ICar } from '../models/car.js';
 
 // Create a new car
 export const createCar = async (data: ICar) => {

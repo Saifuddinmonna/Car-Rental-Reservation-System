@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
-import User, { IUser } from '../models/user';
-import { generateToken } from '../utils/jwt';
+import User, { IUser } from '../models/user.js';
+import { generateToken } from '../utils/jwt.js';
 
 // JwtPayload interface
 interface JwtPayload {

@@ -1,4 +1,4 @@
-import Car from '../models/car';
+import Car from '../models/car.js';
 // Create a new car
 export const createCar = async (data) => {
     return await Car.create(data);

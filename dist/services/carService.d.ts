@@ -1,4 +1,4 @@
-import { ICar } from '../models/car';
+import { ICar } from '../models/car.js';
 export declare const createCar: (data: ICar) => Promise<import("mongoose").Document<unknown, {}, ICar> & ICar & {
     _id: import("mongoose").Types.ObjectId;
 }>;

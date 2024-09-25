@@ -1,6 +1,6 @@
 import express from 'express';
-import { createBookingController, getBookingByIdController, getBookingsController, completeBookingController } from '../controllers/bookingController';
-import { isAuthenticated, isAdmin } from '../middlewares/authMiddleware';
+import { createBookingController, getBookingByIdController, getBookingsController, completeBookingController } from '../controllers/bookingController.js';
+import { isAuthenticated, isAdmin } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 // POST: /api/bookings - Create a new booking (user)
 router.post('/', isAuthenticated, createBookingController);

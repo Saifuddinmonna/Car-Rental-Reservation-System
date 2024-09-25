@@ -1,4 +1,4 @@
-import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService';
+import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService.js';
 // Create a booking (User)
 export const createBookingController = async (req, res) => {
     try {

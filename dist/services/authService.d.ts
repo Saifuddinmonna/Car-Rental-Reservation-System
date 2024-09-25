@@ -1,4 +1,4 @@
-import { IUser } from '../models/user';
+import { IUser } from '../models/user.js';
 declare class AuthService {
     static registerUser(data: IUser): Promise<import("mongoose").Document<unknown, {}, IUser> & IUser & {
         _id: import("mongoose").Types.ObjectId;
