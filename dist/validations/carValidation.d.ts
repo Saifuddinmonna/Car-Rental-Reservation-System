@@ -6,12 +6,12 @@ export declare const carSchema: z.ZodObject<{
     pricePerHour: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     model: string;
+    pricePerHour: number;
     brand: string;
     year: number;
-    pricePerHour: number;
 }, {
     model: string;
+    pricePerHour: number;
     brand: string;
     year: number;
-    pricePerHour: number;
 }>;

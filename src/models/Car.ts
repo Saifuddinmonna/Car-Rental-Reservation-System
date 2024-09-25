@@ -1,13 +1,15 @@
 import { Schema, model } from 'mongoose';
 
 // Updated interface ICar
-export interface ICar {
+export interface ICar extends Document {
   name: string;
   description: string;
   color: string;
   isElectric: boolean;
   features: string[]; // Array of strings for features
   pricePerHour: number;
+  createdAt?: Date; // Optional because Mongoose auto-generates this
+  updatedAt?: Date; // Optional because Mongoose auto-generates this
 }
 
 // Updated schema for Car

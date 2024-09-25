@@ -1,9 +1,12 @@
-export interface ICar {
-    model: string;
-    brand: string;
-    year: number;
+export interface ICar extends Document {
+    name: string;
+    description: string;
+    color: string;
+    isElectric: boolean;
+    features: string[];
     pricePerHour: number;
-    available: boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 declare const Car: import("mongoose").Model<ICar, {}, {}, {}, import("mongoose").Document<unknown, {}, ICar> & ICar & {
     _id: import("mongoose").Types.ObjectId;

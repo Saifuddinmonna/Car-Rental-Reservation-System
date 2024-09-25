@@ -16,7 +16,7 @@ export const updateCar = async (id, data) => {
     return await Car.findByIdAndUpdate(id, data, { new: true });
 };
 // Delete a car by ID
-export const deleteCar = async (id,data) => {
+export const deleteCar = async (id) => {
     return await Car.findByIdAndDelete(id);
 };
 //# sourceMappingURL=carService.js.map

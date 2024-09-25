@@ -50,9 +50,35 @@ export const updateCarController = async (req: Request, res: Response) => {
 // Delete a car (Admin)
 export const deleteCarController = async (req: Request, res: Response) => {
   try {
-    await deleteCar(req.params.id);
-    res.status(204).send();
-  } catch (error) {
-    res.status(500).json({ message: 'Error deleting car', error });
+      const car = await deleteCar(req.params.id);
+      console.log('do I get car',req.body);
+      console.log('for id check',req.params.id);
+      if (!car) {
+          return res.status(404).json({ message: 'Car not found' });
+      }
+
+      const response = {
+          success: true,
+          statusCode: 200,
+          message: "Car Deleted successfully",
+          data: {
+              _id: car._id,
+              name: car.name,
+              description: car.description,
+              color: car.color,
+              isElectric: car.isElectric,
+              features: car.features,
+              pricePerHour: car.pricePerHour,
+              status: "available",
+              isDeleted: true,
+              createdAt: car.createdAt,
+              updatedAt: car.updatedAt
+          }
+      };
+
+      res.status(200).json(response);
+  }
+  catch (error) {
+      res.status(500).json({ message: 'Error deleting car', error });
   }
 };

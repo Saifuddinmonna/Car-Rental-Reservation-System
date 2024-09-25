@@ -22,5 +22,5 @@ export const updateCar = async (id: string, data: ICar) => {
 
 // Delete a car by ID
 export const deleteCar = async (id: string) => {
-  await Car.findByIdAndDelete(id);
+  return await Car.findByIdAndDelete(id);
 };

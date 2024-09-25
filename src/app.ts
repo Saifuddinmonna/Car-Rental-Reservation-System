@@ -25,9 +25,9 @@ app.use('/api/cars', carRoutes);
 app.use('/api/bookings', bookingRoutes);
 // Error handling middleware
 app.use(errorHandler);
-connectDB();
+// connectDB();
 // // Start the server
-// const PORT = process.env.PORT || 5000; // Use environment variable or default to 5000
+// const PORT = process.env.PORT || 3000; // Use environment variable or default to 5000
 // app.listen(PORT, () => {
 //     console.log(`Server is running on http://localhost:${PORT}`);
 // });

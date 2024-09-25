@@ -11,4 +11,6 @@ export declare const getCarById: (id: string) => Promise<(import("mongoose").Doc
 export declare const updateCar: (id: string, data: ICar) => Promise<(import("mongoose").Document<unknown, {}, ICar> & ICar & {
     _id: import("mongoose").Types.ObjectId;
 }) | null>;
-export declare const deleteCar: (id: string) => Promise<void>;
+export declare const deleteCar: (id: string) => Promise<(import("mongoose").Document<unknown, {}, ICar> & ICar & {
+    _id: import("mongoose").Types.ObjectId;
+}) | null>;
