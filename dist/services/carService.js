@@ -1,31 +1,22 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import Car from '../models/car';
 // Create a new car
-export const createCar = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield Car.create(data);
-});
+export const createCar = async (data) => {
+    return await Car.create(data);
+};
 // Get all cars
-export const getCars = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield Car.find();
-});
+export const getCars = async () => {
+    return await Car.find();
+};
 // Get a car by ID
-export const getCarById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield Car.findById(id);
-});
+export const getCarById = async (id) => {
+    return await Car.findById(id);
+};
 // Update a car by ID
-export const updateCar = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield Car.findByIdAndUpdate(id, data, { new: true });
-});
+export const updateCar = async (id, data) => {
+    return await Car.findByIdAndUpdate(id, data, { new: true });
+};
 // Delete a car by ID
-export const deleteCar = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    yield Car.findByIdAndDelete(id);
-});
+export const deleteCar = async (id) => {
+    await Car.findByIdAndDelete(id);
+};
 //# sourceMappingURL=carService.js.map

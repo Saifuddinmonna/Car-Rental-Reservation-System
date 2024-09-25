@@ -1,5 +1,6 @@
 // Custom Error Class
 class CustomError extends Error {
+    statusCode;
     constructor(message, statusCode) {
         super(message);
         this.statusCode = statusCode;
