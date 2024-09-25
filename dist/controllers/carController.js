@@ -3,7 +3,24 @@ import { createCar, getCars, getCarById, updateCar, deleteCar } from '../service
 export const createCarController = async (req, res) => {
     try {
         const car = await createCar(req.body);
-        res.status(201).json(car);
+        res.json({
+            success: true,
+            statusCode: 200,
+            message: "Car created successfully",
+            data: {
+                _id: car._id,
+                name: car.name,
+                description: car.description,
+                color: car.color,
+                isElectric: car.isElectric,
+                features: car.features,
+                pricePerHour: car.pricePerHour,
+                status: "available",
+                isDeleted: true,
+                createdAt: car.createdAt,
+                updatedAt: car.updatedAt
+            }
+        });
     }
     catch (error) {
         res.status(500).json({ message: 'Error creating car', error });
