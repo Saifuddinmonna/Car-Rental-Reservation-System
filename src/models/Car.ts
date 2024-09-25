@@ -1,19 +1,23 @@
 import { Schema, model } from 'mongoose';
 
+// Updated interface ICar
 export interface ICar {
-  model: string;
-  brand: string;
-  year: number;
+  name: string;
+  description: string;
+  color: string;
+  isElectric: boolean;
+  features: string[]; // Array of strings for features
   pricePerHour: number;
-  available: boolean;
 }
 
+// Updated schema for Car
 const carSchema = new Schema<ICar>({
-  model: { type: String, required: true },
-  brand: { type: String, required: true },
-  year: { type: Number, required: true },
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  color: { type: String, required: true },
+  isElectric: { type: Boolean, required: true },
+  features: { type: [String], required: true }, // Array of strings
   pricePerHour: { type: Number, required: true },
-  available: { type: Boolean, default: true },
 }, { timestamps: true });
 
 const Car = model<ICar>('Car', carSchema);
