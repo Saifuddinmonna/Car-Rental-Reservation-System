@@ -40,7 +40,9 @@ export const login = async (req: Request, res: Response) => {
       role: user.role || 'user'    // Ensure role is from the user model
     });
     
-    res.status(200).json({ user, token: newToken });
+    res.status(200).json({  "success": true,
+      "statusCode": 200,
+      "message": "User logged in successfully",_id: user._id,data:user,token: newToken });
   } catch (error) {
     res.status(401).json({ message: 'Invalid credentials', error });
   }
