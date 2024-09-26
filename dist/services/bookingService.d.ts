@@ -5,6 +5,19 @@ interface IBookingData {
     date: string;
     startTime: string;
 }
+export declare const returnCar: (bookingId: string, endTime: string) => Promise<{
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+        bookingId: string;
+        carId: mongoose.Schema.Types.ObjectId;
+        userId: mongoose.Schema.Types.String | mongoose.Schema.Types.ObjectId;
+        totalCost: number;
+        startTime: Date;
+        endTime: Date;
+    };
+}>;
 export declare const createBooking: (bookingData: IBookingData, userId: string) => Promise<{
     success: boolean;
     statusCode: number;
@@ -42,14 +55,14 @@ export declare const createBooking: (bookingData: IBookingData, userId: string) 
 }>;
 export declare const completeBooking: (id: string) => Promise<{
     booking: mongoose.Document<unknown, {}, IBooking> & IBooking & Required<{
-        _id: unknown;
+        _id: mongoose.Types.ObjectId;
     }>;
     cost: number;
 }>;
 export declare const getAllBookings: () => Promise<(mongoose.Document<unknown, {}, IBooking> & IBooking & Required<{
-    _id: unknown;
+    _id: mongoose.Types.ObjectId;
 }>)[]>;
 export declare const getBookingById: (id: string) => Promise<(mongoose.Document<unknown, {}, IBooking> & IBooking & Required<{
-    _id: unknown;
+    _id: mongoose.Types.ObjectId;
 }>) | null>;
 export {};

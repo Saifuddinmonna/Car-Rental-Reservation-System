@@ -2,6 +2,9 @@ import { Schema, model } from 'mongoose';
 
 // Updated interface ICar
 export interface ICar extends Document {
+  save(): unknown;
+  _id: any;
+  model: string;
   name: string;
   description: string;
   color: string;
@@ -10,8 +13,8 @@ export interface ICar extends Document {
   pricePerHour: number;
   status: string;  // Add the status field (e.g., "available", "unavailable")
   isDeleted: boolean; // Add the isDeleted field
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 // Updated schema for Car

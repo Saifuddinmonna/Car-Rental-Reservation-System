@@ -1,9 +1,16 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response , NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { IUser } from '../models/user.js';
 
-interface AuthRequest extends Request {
-  user?: IUser;
+
+interface AuthUser {
+  userId: string;
+  role: string;
+}
+
+// Update AuthRequest to include the user field in the Request object
+export interface AuthRequest extends Request {
+  user?: AuthUser;
 }
 
 // Rename `authMiddleware` to `isAuthenticated`

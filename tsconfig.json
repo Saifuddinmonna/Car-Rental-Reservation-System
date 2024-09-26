@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./types"] // Adjust as per your directory structure
+    "typeRoots": ["./node_modules/@types", "./types"],// Adjust as per your directory structure
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */

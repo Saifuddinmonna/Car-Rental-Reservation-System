@@ -1,12 +1,18 @@
-import { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document, ObjectId } from 'mongoose';
 
 // Define the Booking interface
 export interface IBooking extends Document {
-    userId: Schema.Types.ObjectId;
+    _id: mongoose.Types.ObjectId;  // Explicitly define the _id type
+
+    userId: Schema.Types.String |ObjectId;
     carId: Schema.Types.ObjectId;
     startTime: Date;
-    endTime: Date | null; // This can be either Date or null
+    endTime: Date; // This can be either Date or null
+    status:String;
     totalCost: number;
+    createdAt: Date;    // Remove optional `?`, always require a date
+    updatedAt: Date;    // Remove optional `?`, always require a date
+    cost:number;
 }
 
 // Create the booking schema

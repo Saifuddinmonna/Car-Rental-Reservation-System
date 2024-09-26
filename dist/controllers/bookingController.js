@@ -53,4 +53,23 @@ export const getBookingByIdController = async (req, res) => {
             res.status(400).json({ message: error.message });
     }
 };
+// Return the car (PUT /api/cars/return)
+export const returnCarController = async (req, res) => {
+    try {
+        const { bookingId, endTime } = req.body; // Get booking ID and endTime from request body
+        const result = await returnCar(bookingId, endTime); // Call the service to handle the car return
+        res.json(result);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            res.status(400).json({ message: error.message });
+        }
+        else {
+            res.status(500).json({ message: 'An unexpected error occurred' });
+        }
+    }
+};
+function returnCar(bookingId, endTime) {
+    throw new Error('Function not implemented.');
+}
 //# sourceMappingURL=bookingController.js.map

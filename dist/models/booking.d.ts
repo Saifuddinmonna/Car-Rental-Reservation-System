@@ -1,17 +1,22 @@
-import { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, ObjectId } from 'mongoose';
 export interface IBooking extends Document {
-    userId: Schema.Types.ObjectId;
+    _id: mongoose.Types.ObjectId;
+    userId: Schema.Types.String | ObjectId;
     carId: Schema.Types.ObjectId;
     startTime: Date;
-    endTime: Date | null;
+    endTime: Date;
+    status: String;
     totalCost: number;
+    createdAt: Date;
+    updatedAt: Date;
+    cost: number;
 }
-declare const bookingSchema: Schema<IBooking, import("mongoose").Model<IBooking, any, any, any, Document<unknown, any, IBooking> & IBooking & Required<{
-    _id: unknown;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IBooking, Document<unknown, {}, import("mongoose").FlatRecord<IBooking>> & import("mongoose").FlatRecord<IBooking> & Required<{
-    _id: unknown;
+declare const bookingSchema: mongoose.Schema<IBooking, mongoose.Model<IBooking, any, any, any, mongoose.Document<unknown, any, IBooking> & IBooking & Required<{
+    _id: mongoose.Types.ObjectId;
+}>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, IBooking, mongoose.Document<unknown, {}, mongoose.FlatRecord<IBooking>> & mongoose.FlatRecord<IBooking> & Required<{
+    _id: mongoose.Types.ObjectId;
 }>>;
-declare const Booking: import("mongoose").Model<IBooking, {}, {}, {}, Document<unknown, {}, IBooking> & IBooking & Required<{
-    _id: unknown;
+declare const Booking: mongoose.Model<IBooking, {}, {}, {}, mongoose.Document<unknown, {}, IBooking> & IBooking & Required<{
+    _id: mongoose.Types.ObjectId;
 }>, any>;
 export { Booking, bookingSchema };

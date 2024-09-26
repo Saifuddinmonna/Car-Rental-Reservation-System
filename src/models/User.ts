@@ -7,8 +7,13 @@ export interface IUser {
   email: string;
   password: string;
   role: 'user' | 'admin';
+  phone?: string;   // Optional phone property, just type it as `string`
+  address?: string; // Optional address property, typed as `string`
 }
-
+export interface IUser {
+  userId: string; // Add this line
+  // ... other properties
+}
 class UserModel {
   private static userSchema = new Schema<IUser>({
     name: { type: String, required: true },
