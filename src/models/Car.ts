@@ -6,20 +6,24 @@ export interface ICar extends Document {
   description: string;
   color: string;
   isElectric: boolean;
-  features: string[]; // Array of strings for features
+  features: string[];
   pricePerHour: number;
-  createdAt?: Date; // Optional because Mongoose auto-generates this
-  updatedAt?: Date; // Optional because Mongoose auto-generates this
+  status: string;  // Add the status field (e.g., "available", "unavailable")
+  isDeleted: boolean; // Add the isDeleted field
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 // Updated schema for Car
 const carSchema = new Schema<ICar>({
   name: { type: String, required: true },
-  description: { type: String, required: true },
-  color: { type: String, required: true },
-  isElectric: { type: Boolean, required: true },
-  features: { type: [String], required: true }, // Array of strings
-  pricePerHour: { type: Number, required: true },
+    description: { type: String, required: true },
+    color: { type: String, required: true },
+    isElectric: { type: Boolean, required: true },
+    features: { type: [String], required: true },
+    pricePerHour: { type: Number, required: true },
+    status: { type: String, default: 'available' }, // Set default status
+    isDeleted: { type: Boolean, default: false },   // Set default to false
 }, { timestamps: true });
 
 const Car = model<ICar>('Car', carSchema);

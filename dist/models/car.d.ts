@@ -5,6 +5,8 @@ export interface ICar extends Document {
     isElectric: boolean;
     features: string[];
     pricePerHour: number;
+    status: string;
+    isDeleted: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }
