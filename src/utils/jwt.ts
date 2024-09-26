@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
-const JWT_EXPIRY = process.env.JWT_EXPIRY || '1d';
+const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 
 // JwtPayload interface (define it here)
 export interface JwtPayload {

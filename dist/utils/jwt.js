@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
-const JWT_EXPIRY = process.env.JWT_EXPIRY || '1d';
+const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 // Generate a new JWT token
 export const generateToken = (payload) => {
     return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY });

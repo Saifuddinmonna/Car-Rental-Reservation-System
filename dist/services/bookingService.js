@@ -1,20 +1,62 @@
-import Booking from '../models/booking.js';
-import mongoose from 'mongoose';
+import { Booking } from '../models/booking.js';
 // Create a booking (User)
-export const createBooking = async (data) => {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-    try {
-        const booking = await Booking.create([data], { session });
-        await session.commitTransaction();
-        session.endSession();
-        return booking;
+import Car from '../models/car.js';
+import User from '../models/user.js';
+// Define the function with proper types
+export const createBooking = async (bookingData, userId) => {
+    const { carId, date, startTime } = bookingData;
+    // Check if the car exists and is available
+    const car = await Car.findById(carId);
+    if (!car || car.status !== 'available') {
+        throw new Error('Car is not available for booking');
     }
-    catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-        throw error;
-    }
+    // Create a new booking
+    const booking = new Booking({
+        userId,
+        carId,
+        startTime: new Date(`${date}T${startTime}:00`), // Format start time
+    });
+    await booking.save();
+    // Update the car's availability
+    car.status = 'unavailable';
+    await car.save();
+    // Get the user details
+    const user = await User.findById(userId);
+    return {
+        success: true,
+        statusCode: 200,
+        message: "Car booked successfully",
+        data: {
+            _id: booking._id.toString(), // Convert to string if necessary
+            date,
+            startTime,
+            endTime: booking.endTime, // Ensure `endTime` is handled correctly
+            user: {
+                _id: user?._id.toString(), // Handle null case
+                name: user?.name || '', // Default to empty string if null
+                email: user?.email || '',
+                role: user?.role || '',
+                phone: user?.phone,
+                address: user?.address,
+            },
+            car: {
+                _id: car._id.toString(),
+                name: car.model, // Use car's model name
+                description: car.description || 'No description provided',
+                color: car.color,
+                isElectric: car.isElectric || false,
+                features: car.features || [],
+                pricePerHour: car.pricePerHour,
+                status: car.status,
+                isDeleted: car.isDeleted || false,
+                createdAt: car.createdAt,
+                updatedAt: car.updatedAt,
+            },
+            totalCost: booking.totalCost, // Ensure totalCost is defined in your model
+            createdAt: booking.createdAt,
+            updatedAt: booking.updatedAt,
+        }
+    };
 };
 // Complete a booking and calculate the cost (Admin)
 export const completeBooking = async (id) => {

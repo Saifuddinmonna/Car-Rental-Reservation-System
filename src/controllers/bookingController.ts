@@ -2,13 +2,17 @@ import { Request, Response } from 'express';
 import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService.js';
 
 // Create a booking (User)
-export const createBookingController = async (req: Request, res: Response) => {
+export const createBookingController = async (req: Request, res: Response): Promise<void> => {
   try {
-    const booking = await createBooking(req.body);
-    res.status(201).json(booking);
+      // Ensure req.body is typed correctly if you have a specific interface for booking data
+      const booking = await createBooking(req.body, req.user.userId); // req.user comes from authentication middleware
+      res.status(201).json(booking);
   } catch (error) {
-    if (error instanceof Error)
-    res.status(400).json({ message: error.message });
+      if (error instanceof Error) {
+          res.status(400).json({ message: error.message });
+      } else {
+          res.status(500).json({ message: 'An unexpected error occurred' });
+      }
   }
 };
 

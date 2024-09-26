@@ -2,12 +2,17 @@ import { createBooking, completeBooking, getAllBookings, getBookingById } from '
 // Create a booking (User)
 export const createBookingController = async (req, res) => {
     try {
-        const booking = await createBooking(req.body);
+        // Ensure req.body is typed correctly if you have a specific interface for booking data
+        const booking = await createBooking(req.body, req.user.userId); // req.user comes from authentication middleware
         res.status(201).json(booking);
     }
     catch (error) {
-        if (error instanceof Error)
+        if (error instanceof Error) {
             res.status(400).json({ message: error.message });
+        }
+        else {
+            res.status(500).json({ message: 'An unexpected error occurred' });
+        }
     }
 };
 // Complete booking and calculate rental cost (Admin)
