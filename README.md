@@ -76,17 +76,18 @@ The application will be running on ` http://localhost:5001`.
 
 ## API Endpoints
 Authentication & Users
-**POST /api/users/register - Register a new user.**
-**POST /api/users/login - Login to the system and receive a JWT token.**
-# Car Management (Admin)
- **GET /api/cars - Get all cars.**
- **POST /api/cars - Add a new car (Admin only).**
-**PUT /api/cars/:id - Update a car by ID (Admin only).**
- **DELETE /api/cars/:id - Delete a car by ID (Admin only).**
-# Booking Management
+- **POST /api/users/register - Register a new user.**
+- **POST /api/users/login - Login to the system and receive a JWT token.**
+## Car Management (Admin)
+- **GET /api/cars - Get all cars.**
+ - **POST /api/cars - Add a new car (Admin only).**
+ - **PUT /api/cars/:id - Update a car by ID (Admin only).**
+- **DELETE /api/cars/:id - Delete a car by ID (Admin only).**
+## Booking Management
 POST /api/bookings - Create a new booking (User).
-**GET /api/bookings/my-bookings - Get all bookings for the logged-in user.**
-**PUT /api/cars/return - Mark a car as returned (Admin only).**
+- **GET /api/bookings/my-bookings - Get all bookings for the logged-in user.**
+- **PUT /api/cars/return - Mark a car as returned (Admin only).**
+
 Deployment
 Vercel Deployment
 To deploy this project to Vercel:
