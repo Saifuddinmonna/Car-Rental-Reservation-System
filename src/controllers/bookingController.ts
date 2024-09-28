@@ -1,6 +1,14 @@
 import { Request, Response } from 'express';
-import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService.js';
+import { createBooking, completeBooking, getAllBookings, getBookingById,returnCar } from '../services/bookingService.js';
 import { object } from 'zod';
+import { IBooking } from '../models/booking.js';
+
+
+
+    interface  user extends IBooking {}
+    
+  
+
 
 // Create a booking (User)
 export const createBookingController = async (req: Request, res: Response): Promise<void> => {
@@ -59,18 +67,19 @@ export const getBookingByIdController = async (req: Request, res: Response) => {
 // Return the car (PUT /api/cars/return)
 export const returnCarController = async (req: Request, res: Response) => {
   try {
-    const { bookingId, endTime } = req.body; // Get booking ID and endTime from request body
-    const result = await returnCar(bookingId, endTime); // Call the service to handle the car return
-    res.json(result);
+    console.log('data hit from booking controller')
+      const { bookingId, endTime } = req.body;
+      const result = await returnCar(bookingId, endTime);
+      res.json(result);
   } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ message: error.message });
-    } else {
-      res.status(500).json({ message: 'An unexpected error occurred' });
-    }
+      if (error instanceof Error) {
+          res.status(400).json({ message: error.message });
+      } else {
+          res.status(500).json({ message: 'An unexpected error occurred' });
+      }
   }
 };
-function returnCar(bookingId: any, endTime: any) {
-  throw new Error('Function not implemented.');
-}
+// function returnCar(bookingId: any, endTime: any) {
+//   throw new Error('Function not implemented.');
+// }
 

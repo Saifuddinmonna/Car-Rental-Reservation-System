@@ -6,7 +6,6 @@ const router = express.Router();
 router.post('/', isAuthenticated, createBookingController);
 // GET: /api/bookings - Get all bookings (admin only)
 router.get('/', isAuthenticated, isAdmin, getBookingsController);
-router.get('/cars/return', isAuthenticated, isAdmin, getBookingsController);
 router.get('/my-bookings', isAuthenticated, getBookingsController);
 // GET: /api/bookings/:id - Get a specific booking by ID (admin only)
 router.get('/:id', isAuthenticated, isAdmin, getBookingByIdController);

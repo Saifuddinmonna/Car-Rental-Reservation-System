@@ -5,19 +5,6 @@ interface IBookingData {
     date: string;
     startTime: string;
 }
-export declare const returnCar: (bookingId: string, endTime: string) => Promise<{
-    success: boolean;
-    statusCode: number;
-    message: string;
-    data: {
-        bookingId: string;
-        carId: mongoose.Schema.Types.ObjectId;
-        userId: mongoose.Schema.Types.String | mongoose.Schema.Types.ObjectId;
-        totalCost: number;
-        startTime: Date;
-        endTime: Date;
-    };
-}>;
 export declare const createBooking: (bookingData: IBookingData, userId: string) => Promise<{
     success: boolean;
     statusCode: number;
@@ -45,6 +32,34 @@ export declare const createBooking: (bookingData: IBookingData, userId: string) 
             pricePerHour: number;
             status: string;
             isDeleted?: boolean;
+            createdAt: Date;
+            updatedAt: Date;
+        };
+        totalCost: number;
+        createdAt: Date;
+        updatedAt: Date;
+    };
+}>;
+export declare const returnCar: (bookingId: string, endTime: string) => Promise<{
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+        _id: string;
+        date: string;
+        startTime: string;
+        endTime: string;
+        user: any;
+        car: {
+            _id: any;
+            name: string;
+            description: string;
+            color: string;
+            isElectric: boolean;
+            features: string[];
+            pricePerHour: number;
+            status: string;
+            isDeleted: boolean;
             createdAt: Date;
             updatedAt: Date;
         };

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { createCar, getCars, getCarById, updateCar, deleteCar } from '../services/carService.js';
+import { returnCar } from '../services/bookingService.js';
 
 // Create a new car (Admin)
 export const createCarController = async (req: Request, res: Response) => {
@@ -100,3 +101,16 @@ export const deleteCarController = async (req: Request, res: Response) => {
       res.status(500).json({ message: 'Error deleting car', error });
   }
 };
+export const returnCarController = async (req: Request, res: Response) => {
+  try {
+      const { bookingId, endTime } = req.body;
+      const result = await returnCar(bookingId, endTime);  // This calls the service
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({
+          message: 'Error processing car return',
+          error: error instanceof Error ? error.message : error
+      });
+  }
+};
+

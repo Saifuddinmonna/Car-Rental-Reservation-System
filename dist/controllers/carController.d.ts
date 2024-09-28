@@ -4,3 +4,4 @@ export declare const getCarsController: (req: Request, res: Response) => Promise
 export declare const getCarByIdController: (req: Request, res: Response) => Promise<Response<any, Record<string, any>> | undefined>;
 export declare const updateCarController: (req: Request, res: Response) => Promise<Response<any, Record<string, any>> | undefined>;
 export declare const deleteCarController: (req: Request, res: Response) => Promise<Response<any, Record<string, any>> | undefined>;
+export declare const returnCarController: (req: Request, res: Response) => Promise<void>;

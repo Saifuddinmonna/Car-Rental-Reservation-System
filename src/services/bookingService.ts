@@ -13,61 +13,6 @@ interface IBookingData {
     startTime: string;
 }
 
-// Return a car and calculate the rental cost
-// Return a car and calculate the rental cost
-export const returnCar = async (bookingId: string, endTime: string) => {
-    // Find the booking by ID and populate associated car and user details
-    const booking: IBooking | null = await Booking.findById(bookingId).populate('car user');
-    
-    if (!booking) {
-        throw new Error('Booking not found');
-    }
-
-    // Check if the booking is already completed
-    if (booking.status === 'Completed') {
-        throw new Error('This booking has already been completed');
-    }
-
-    // Parse endTime to a Date object
-    const endDate = new Date(endTime);
-    const startDate = booking.startTime;
-
-    // Check if the return time is valid (must be after the start time)
-    if (endDate <= startDate) {
-        throw new Error('Return time must be after the start time');
-    }
-
-    // Calculate the total cost
-    const totalCost = calculateCost(startDate, endDate);
-    
-    // Update the booking details
-    booking.endTime = endDate; // Assuming endTime field exists in IBooking model
-    booking.totalCost = totalCost; // Add total cost to the booking
-    booking.status = 'Completed'; // Mark booking as completed
-    await booking.save();
-
-    // Update the car's availability
-    const car: ICar | null = await Car.findById(booking.carId);
-    if (car) {
-        car.status = 'available'; // Set car status to available
-        await car.save();
-    }
-
-    // Return details about the completed booking
-    return {
-        success: true,
-        statusCode: 200,
-        message: 'Car returned successfully',
-        data: {
-            bookingId: booking._id.toString(),
-            carId: booking.carId,
-            userId: booking.userId,
-            totalCost,
-            startTime: booking.startTime,
-            endTime: booking.endTime,
-        },
-    };
-};
 // Define the function with proper types
 export const createBooking = async (bookingData: IBookingData, userId: string): Promise<{
     success: boolean;
@@ -164,6 +109,83 @@ export const createBooking = async (bookingData: IBookingData, userId: string): 
         }
     };
 };
+
+
+
+// Return a car and calculate the rental cost
+
+
+export const returnCar = async (bookingId: string, endTime: string) => {
+    // Find the booking by ID and populate associated car and user details
+    const booking = await Booking.findById(bookingId).populate('userId').populate('carId');  // Ensure proper population
+    
+    if (!booking) {
+        throw new Error('Booking not found');
+    }
+
+    // Ensure `car` and `user` are populated
+    if (!booking.carId || !booking.userId) {
+        throw new Error('Failed to populate car or user details');
+    }
+
+    // Convert the endTime string to a Date object
+    const startDate = booking.startTime;
+    const endDate = new Date(endTime);
+
+    // Validate the return time
+    if (endDate <= startDate) {
+        throw new Error('Return time must be after the start time');
+    }
+
+    // Calculate total cost (duration in hours * pricePerHour)
+    const durationInHours = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
+    const car = await Car.findById(booking.carId);  // Ensure the car is properly fetched
+    if (!car) {
+        throw new Error('Car not found');
+    }
+    const totalCost = durationInHours * car.pricePerHour;
+
+    // Update booking with endTime and totalCost
+    booking.endTime = endDate;
+    booking.totalCost = totalCost;
+    booking.status = 'Completed'; // Mark booking as completed
+    await booking.save();
+
+    // Update car status to available
+    car.status = 'available';
+    await car.save();
+
+    // Return the response data
+    return {
+        success: true,
+        statusCode: 200,
+        message: 'Car returned successfully',
+        data: {
+            _id: booking._id.toString(),
+            date: booking.startTime.toISOString().split('T')[0],
+            startTime: booking.startTime.toISOString().split('T')[1].slice(0, 5),
+            endTime: endDate.toISOString().split('T')[1].slice(0, 5),
+            user: booking.user,
+            car: {
+                _id: car._id.toString(),
+                name: car.name,
+                description: car.description,
+                color: car.color,
+                isElectric: car.isElectric,
+                features: car.features,
+                pricePerHour: car.pricePerHour,
+                status: car.status,
+                isDeleted: car.isDeleted,
+                createdAt: car.createdAt,
+                updatedAt: car.updatedAt,
+            },
+            totalCost,
+            createdAt: booking.createdAt,
+            updatedAt: booking.updatedAt,
+        },
+    };
+};
+
 
 
 // Complete a booking and calculate the cost (Admin)

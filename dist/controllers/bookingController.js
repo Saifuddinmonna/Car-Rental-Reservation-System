@@ -1,4 +1,4 @@
-import { createBooking, completeBooking, getAllBookings, getBookingById } from '../services/bookingService.js';
+import { createBooking, completeBooking, getAllBookings, getBookingById, returnCar } from '../services/bookingService.js';
 // Create a booking (User)
 export const createBookingController = async (req, res) => {
     try {
@@ -56,8 +56,9 @@ export const getBookingByIdController = async (req, res) => {
 // Return the car (PUT /api/cars/return)
 export const returnCarController = async (req, res) => {
     try {
-        const { bookingId, endTime } = req.body; // Get booking ID and endTime from request body
-        const result = await returnCar(bookingId, endTime); // Call the service to handle the car return
+        console.log('data hit from booking controller');
+        const { bookingId, endTime } = req.body;
+        const result = await returnCar(bookingId, endTime);
         res.json(result);
     }
     catch (error) {
@@ -69,7 +70,7 @@ export const returnCarController = async (req, res) => {
         }
     }
 };
-function returnCar(bookingId, endTime) {
-    throw new Error('Function not implemented.');
-}
+// function returnCar(bookingId: any, endTime: any) {
+//   throw new Error('Function not implemented.');
+// }
 //# sourceMappingURL=bookingController.js.map

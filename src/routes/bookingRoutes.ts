@@ -10,7 +10,7 @@ router.post('/', isAuthenticated, createBookingController);
 
 // GET: /api/bookings - Get all bookings (admin only)
 router.get('/', isAuthenticated, isAdmin, getBookingsController);
-router.get('/cars/return', isAuthenticated, isAdmin, getBookingsController);
+
 
 router.get('/my-bookings', isAuthenticated,  getBookingsController);
 

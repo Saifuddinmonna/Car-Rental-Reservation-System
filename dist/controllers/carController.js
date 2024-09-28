@@ -1,4 +1,5 @@
 import { createCar, getCars, getCarById, updateCar, deleteCar } from '../services/carService.js';
+import { returnCar } from '../services/bookingService.js';
 // Create a new car (Admin)
 export const createCarController = async (req, res) => {
     try {
@@ -93,6 +94,19 @@ export const deleteCarController = async (req, res) => {
     }
     catch (error) {
         res.status(500).json({ message: 'Error deleting car', error });
+    }
+};
+export const returnCarController = async (req, res) => {
+    try {
+        const { bookingId, endTime } = req.body;
+        const result = await returnCar(bookingId, endTime); // This calls the service
+        res.json(result);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Error processing car return',
+            error: error instanceof Error ? error.message : error
+        });
     }
 };
 //# sourceMappingURL=carController.js.map

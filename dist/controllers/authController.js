@@ -7,7 +7,7 @@ export const register = async (req, res) => {
         // Generate token with userId from _id
         const token = generateToken({
             userId: user._id.toString(), // Ensure _id is converted to string
-            role: user.role || 'user' // Ensure role is from the user model
+            role: user.role || 'user', // Ensure role is from the user model
         });
         res.status(201).json({ "success": true,
             "statusCode": 201,

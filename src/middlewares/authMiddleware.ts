@@ -5,7 +5,7 @@ import { IUser } from '../models/user.js';
 
 interface AuthUser {
   userId: string;
-  role: string;
+  role: string ;
 }
 
 // Update AuthRequest to include the user field in the Request object
