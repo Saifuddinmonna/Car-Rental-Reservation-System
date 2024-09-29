@@ -1,13 +1,27 @@
 import { createBooking, completeBooking, getAllBookings, getBookingById, returnCar } from '../services/bookingService.js';
+// Import Zod
+import { z } from 'zod';
+// Zod schema for booking validation
+const bookingSchema = z.object({
+    carId: z.string().nonempty("Car ID is required"),
+    startTime: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid start time"),
+    endTime: z.string().optional(),
+    totalCost: z.number().optional(),
+    status: z.string().optional(),
+});
 // Create a booking (User)
 export const createBookingController = async (req, res) => {
     try {
-        // Ensure req.body is typed correctly if you have a specific interface for booking data
+        // Validate req.body using Zod schema
+        bookingSchema.parse(req.body);
         const booking = await createBooking(req.body, req.user.userId); // req.user comes from authentication middleware
         res.status(201).json(booking);
     }
     catch (error) {
-        if (error instanceof Error) {
+        if (error instanceof z.ZodError) {
+            res.status(400).json({ message: error.errors });
+        }
+        else if (error instanceof Error) {
             res.status(400).json({ message: error.message });
         }
         else {
@@ -19,12 +33,17 @@ export const createBookingController = async (req, res) => {
 export const completeBookingController = async (req, res) => {
     try {
         const { id } = req.params;
+        z.string().parse(id); // Validate ID using Zod
         const result = await completeBooking(id);
         res.json(result);
     }
     catch (error) {
-        if (error instanceof Error)
+        if (error instanceof z.ZodError) {
+            res.status(400).json({ message: error.errors });
+        }
+        else if (error instanceof Error) {
             res.status(400).json({ message: error.message });
+        }
     }
 };
 // Get all bookings (Admin)

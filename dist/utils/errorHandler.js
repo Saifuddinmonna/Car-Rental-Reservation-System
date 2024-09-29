@@ -2,6 +2,7 @@
 class CustomError extends Error {
     statusCode;
     constructor(message, statusCode) {
+        console.log('custom error found ');
         super(message);
         this.statusCode = statusCode;
     }
@@ -12,7 +13,7 @@ export const errorHandler = (err, req, res, next) => {
     const message = err.message || 'Internal Server Error';
     res.status(statusCode).json({
         success: false,
-        error: message,
+        error: 'Router not found '
     });
     next(err);
 };

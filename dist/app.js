@@ -21,8 +21,17 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
 app.use('/api/bookings', bookingRoutes);
-// Error handling middleware
+// 404 Handler (if needed)
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        statusCode: 404,
+        message: 'Not Found',
+    });
+});
+// Global Error Handling Middleware (must be at the end)
 app.use(errorHandler);
+// Error handling middleware
 connectDB();
 // Start the server
 const PORT = process.env.PORT || 3000; // Use environment variable or default to 5000

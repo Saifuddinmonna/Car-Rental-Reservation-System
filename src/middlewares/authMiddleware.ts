@@ -10,11 +10,11 @@ interface AuthUser {
 
 // Update AuthRequest to include the user field in the Request object
 export interface AuthRequest extends Request {
-  user?: AuthUser;
+  user: AuthUser;
 }
 
 // Rename `authMiddleware` to `isAuthenticated`
-export const isAuthenticated = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) return res.status(401).send({ message: 'Access denied. No token provided.' });
 
@@ -29,7 +29,7 @@ export const isAuthenticated = (req: AuthRequest, res: Response, next: NextFunct
 };
 
 // Rename `adminMiddleware` to `isAdmin`
-export const isAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
   if (req.user?.role !== 'admin') {
     return res.status(403).send({ message: 'Access denied. Admins only.' });
   }
