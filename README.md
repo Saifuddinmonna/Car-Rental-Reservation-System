@@ -2,7 +2,12 @@
 
 ## Description
 
-The **Car Rental Reservation System** backend is a Node.js application built with Express, TypeScript, and MongoDB. This system allows users to rent cars, and administrators can manage cars and bookings. The backend provides functionalities such as car management, booking management, user authentication, and car returns. The system ensures secure authentication and authorization using JWT tokens and includes role-based access for admins and users.
+The **Car Rental Reservation System** backend is a Node.js application built with
+### Express, 
+### TypeScript, 
+### Mongoose,
+### and MongoDB. 
+ This system allows users to rent cars, and administrators can manage cars and bookings. The backend provides functionalities such as car management, booking management, user authentication, and car returns. The system ensures secure authentication and authorization using JWT tokens and includes role-based access for admins and users.
 
 ---
 
@@ -40,6 +45,22 @@ Make sure you have the following installed on your system:
 - **MongoDB** (local instance or MongoDB Atlas)
 - **Vercel CLI** (if deploying on Vercel)
 
+
+## API Endpoints
+Authentication & Users
+- **POST /api/users/register - Register a new user.**
+- **POST /api/users/login - Login to the system and receive a JWT token.**
+## Car Management (Admin)
+- **GET /api/cars - Get all cars.**
+ - **POST /api/cars - Add a new car (Admin only).**
+ - **PUT /api/cars/:id - Update a car by ID (Admin only).**
+- **DELETE /api/cars/:id - Delete a car by ID (Admin only).**
+## Booking Management
+POST /api/bookings - Create a new booking (User).
+- **GET /api/bookings/my-bookings - Get all bookings for the logged-in user.**
+- **PUT /api/cars/return - Mark a car as returned (Admin only).**
+
+
 ### Clone the Repository
 
 bash
@@ -74,19 +95,7 @@ npm start
 Access the Application
 The application will be running on ` http://localhost:5001`.
 
-## API Endpoints
-Authentication & Users
-- **POST /api/users/register - Register a new user.**
-- **POST /api/users/login - Login to the system and receive a JWT token.**
-## Car Management (Admin)
-- **GET /api/cars - Get all cars.**
- - **POST /api/cars - Add a new car (Admin only).**
- - **PUT /api/cars/:id - Update a car by ID (Admin only).**
-- **DELETE /api/cars/:id - Delete a car by ID (Admin only).**
-## Booking Management
-POST /api/bookings - Create a new booking (User).
-- **GET /api/bookings/my-bookings - Get all bookings for the logged-in user.**
-- **PUT /api/cars/return - Mark a car as returned (Admin only).**
+
 
 Deployment
 Vercel Deployment
@@ -117,6 +126,11 @@ This project is licensed under the MIT License.
 For any questions or support, reach out to Saifuddin . 
 Phone : 01623361191
 
+
+## Conclusion (15-30 seconds)
+-**Summary: Briefly summarize what you've demonstrated.**
+   -**Future Enhancements: Mention any future features you'd like to implement (e.g., better reporting, advanced admin features, etc.).**
+ -**Thanks: Thank the viewer for watching.**
 
 
 ### Explanation:
