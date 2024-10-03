@@ -3,17 +3,18 @@ import jwt from 'jsonwebtoken';
 import { IUser } from '../models/user.js';
 
 
-interface AuthUser {
+interface AuthUser extends Request {
+  user?:string; 
   userId: string;
-  role: string ;
+ role: "user" | "admin"; 
+// role can only be "user" or "admin"
+}
+interface user extends Request {
+  role:string;
 }
 
-// Update AuthRequest to include the user field in the Request object
-export interface AuthRequest extends Request {
-  user: AuthUser;
-}
 
-// Rename `authMiddleware` to `isAuthenticated`
+
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) return res.status(401).send({ message: 'Access denied. No token provided.' });

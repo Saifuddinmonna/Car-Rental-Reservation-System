@@ -5,6 +5,7 @@ import { IUser } from '../models/user.js'; // Adjust the path based on your proj
 // Define a new type for user to match the expected structure
 type AuthUser = {
   userId: string; // Required property
+  role: "user" | "admin"; 
 } & IUser;
 // Define the AuthRequest interface
 export interface AuthRequest extends Request {

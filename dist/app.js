@@ -26,7 +26,7 @@ app.use((req, res) => {
     res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Not Found',
+        message: 'wrong route  Not Found',
     });
 });
 // Global Error Handling Middleware (must be at the end)

@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-// Rename `authMiddleware` to `isAuthenticated`
 export const isAuthenticated = (req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
     if (!token)

@@ -45,6 +45,18 @@ Make sure you have the following installed on your system:
 - **MongoDB** (local instance or MongoDB Atlas)
 - **Vercel CLI** (if deploying on Vercel)
 
+## my admin email and paddword :
+
+{
+
+  "email": "admin1@example.com",
+
+  "password": "password123"
+}
+
+Bearer token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY4MjI5NDg5MzRjZDM0ZTI5Y2E0NzMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mjc2OTI5MzEsImV4cCI6MTcyODI5NzczMX0.8qN5MuAsFluF9_zXrJbOZYGrOmDS9_n2er1BP8lbzf8"
+
+### if token does not work , it have to  be created admin through  api .
 
 ## API Endpoints
 Authentication & Users
@@ -68,10 +80,9 @@ git clonehttps:`//github.com/Saifuddinmonna/Car-Rental-Reservation-System`
 
 # Install Dependencies
 After cloning the repository, install the required dependencies by running:
-
-bash
-Copy code
-npm install
+ ``` bash
+# Copy code
+npm install 
 Environment Variables
 Create a .env file in the root directory and set the following environment variables:
 
@@ -108,11 +119,11 @@ Copy code
 npm install -g vercel
 Run the following command to deploy your project:
 
-# bash
+ bash 
 Copy code
 vercel
 Follow the prompts to deploy.
-
+```
 # MongoDB Setup
 Make sure your MongoDB instance is properly connected by setting the MONGO_URI environment variable with your connection string.
 If using MongoDB Atlas, ensure that your IP address is whitelisted and the database cluster is running.
@@ -120,22 +131,18 @@ Contribution
 Feel free to contribute to this project by submitting issues or pull requests. All contributions are welcome.
 
  # License
-This project is licensed under the MIT License.
+This project is licensed under the `Saifuddin Ahammed Munna`  License.
 
 # Contact
-For any questions or support, reach out to Saifuddin . 
+For any questions or support, reach out to `Saifuddin Ahammed Munna ` . 
 Phone : 01623361191
 
 
-## Conclusion (15-30 seconds)
--**Summary: Briefly summarize what you've demonstrated.**
-   -**Future Enhancements: Mention any future features you'd like to implement (e.g., better reporting, advanced admin features, etc.).**
- -**Thanks: Thank the viewer for watching.**
 
 
 ### Explanation:
 - **Headings** (`#`, `##`, etc.) are used to structure the document.
 - **Lists** (`-` or `*`) are used for bullet points.
 - **Code blocks** (triple backticks ``` ) are used for commands, code, or configuration files.
-- **Links** (e.g., `[http://localhost:5001](http://localhost:5001)`) are used for URLs.
+- **Links** (e.g., `[http://localhost:5001](https://car-rental-backend-five-zeta.vercel.app/)`) are used for URLs.
 
